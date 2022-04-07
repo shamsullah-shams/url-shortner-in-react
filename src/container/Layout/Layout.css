@@ -1,0 +1,12 @@
+.Layout {
+    padding: 0 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(68, 67, 67);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+}

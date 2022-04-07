@@ -1,0 +1,30 @@
+.Header-div-for-form {
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5% auto;
+}
+
+.Form {
+    margin: 10px;
+    width: 350px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px 1px rgb(204, 200, 200);
+    border-radius: 5px;
+    background-color: white;
+}
+
+.Single-Form-Only {
+    margin: 5% auto;
+}
+
+@media (max-width : 850px) {
+    .Header-div-for-form {
+        flex-direction: column;
+        width: 100%;
+    }
+}
