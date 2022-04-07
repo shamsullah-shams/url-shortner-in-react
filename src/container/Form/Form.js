@@ -10,9 +10,7 @@ import Input from "../../component/Input/Input";
 import Label from "../../component/Label/Label";
 import Button from "../../component/Button/Button";
 import Content from "../../component/Content/Content";
-import BackgroundImage from "../../UI/BackgroundImage/BackgroundImage";
-import Backdrop from "../../UI/Backdrop/BackDrop";
-import copyForm from "../../component/CopyForm/CopyForm";
+import BackgroundImage from "../../component/UI/BackgroundImage/BackgroundImage";
 import "./Form.css";
 
 class Form extends React.Component {
