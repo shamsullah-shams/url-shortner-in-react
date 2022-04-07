@@ -1,0 +1,23 @@
+.ToogleButton {
+    width: 3rem;
+    background: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+    display: none;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.ToogleButton-Bars {
+    width: 70%;
+    height: 3px;
+    background: black;
+    display: block;
+    margin: 0.6rem 0;
+}
+
+@media (max-width : 600px) {
+    .ToogleButton {
+        display: block;
+    }
+}
