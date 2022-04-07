@@ -11,6 +11,8 @@ import Label from "../../component/Label/Label";
 import Button from "../../component/Button/Button";
 import Content from "../../component/Content/Content";
 import BackgroundImage from "../../component/UI/BackgroundImage/BackgroundImage";
+import CopyForm from "../../component/CopyURL/CopyURL";
+import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import "./Form.css";
 
 class Form extends React.Component {
@@ -18,8 +20,8 @@ class Form extends React.Component {
     state = {
         longUrl : '',
         shortUrl : '',
-        showCopyForm : null,
-        showBackDrop : null,
+        showCopyForm : false,
+        showBackDrop : false,
     }
 
     onChangeHandler = (event) => {
@@ -44,12 +46,20 @@ class Form extends React.Component {
     copyUrlHandler = async () => {
         if(this.state.shortUrl !== '') {
             try {
-               const result = await navigator.clipboard.writeText(this.state.shortUrl);
-               console.log(result);
+               await navigator.clipboard.writeText(this.state.shortUrl);
+               this.setState({showBackDrop : false, showCopyForm : false})
             } catch (error) {
                 
             }
         }
+    }
+
+    copyDecisionHandler = () => {
+        this.setState({showBackDrop : true , showCopyForm : true});
+    }
+
+    cancelCopyURLHandler = () => {
+        this.setState({showBackDrop : false, showCopyForm : false});
     }
 
     createQRCode = async () => {
@@ -82,7 +92,7 @@ class Form extends React.Component {
                     <Button className="Go">
                         <FontAwesomeIcon icon={faDiamondTurnRight} />
                     </Button>
-                    <Button onClick={this.copyUrlHandler} className="Go">
+                    <Button onClick={this.copyDecisionHandler} className="Go">
                         <FontAwesomeIcon icon={faCopy} />
                     </Button>
                     <Button onClick={this.createQRCode} className="Go">
@@ -96,6 +106,8 @@ class Form extends React.Component {
         }
         return (
             <BackgroundImage>
+                <CopyForm value={this.state.shortUrl} show={this.state.showCopyForm} copy={this.copyUrlHandler} cancel={this.cancelCopyURLHandler} />
+                <Backdrop show={this.state.showBackDrop} onClick={this.cancelCopyURLHandler} />
                 <Content />
                 { form }
             </BackgroundImage>
