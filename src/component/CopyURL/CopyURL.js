@@ -19,8 +19,8 @@ const copyForm = (props) => {
                 <hr /> 
                 <input type="text" value={props.value} className="CopyInput" />
                 <div className="Button">
-                    <button onClick={props.copy} className="Original">Copy</button>
-                    <button onClick={props.cancel} className="Original">Cancel</button>
+                    <button onClick={props.copy} className="Original Copy">Copy</button>
+                    <button onClick={props.cancel} className="Original Cancel">Cancel</button>
                 </div>
             </div>
         </Aux>
