@@ -1,11 +1,12 @@
 .CopyURL {
     background-color: white;
     width: 600px;
+    height: 200px;
     position: fixed;
-    top: 30%;
+    top: 40%;
     left: 30%;
-    bottom: 38%;
-    right: 38%;
+    bottom: 40%;
+    right: 30%;
     border-radius: 10px;
     box-sizing: border-box;
     z-index: 100;
@@ -86,7 +87,7 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 560px) {
     .CopyURL {
         left: 0;
         width: 100%;

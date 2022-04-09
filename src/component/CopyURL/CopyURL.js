@@ -17,7 +17,7 @@ const copyForm = (props) => {
             <div className={classess.join(' ')}>
                 <h1 className="Heading">Copy URL</h1>
                 <hr /> 
-                <input type="text" value={props.value} className="CopyInput" />
+                <input readOnly type="text" value={props.value} className="CopyInput" />
                 <div className="Button">
                     <button onClick={props.copy} className="Original Copy">Copy</button>
                     <button onClick={props.cancel} className="Original Cancel">Cancel</button>
