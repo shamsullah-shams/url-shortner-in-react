@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import qrcode from 'qrcode';
+import QRCode from 'qrcode';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { faDiamondTurnRight } from "@fortawesome/free-solid-svg-icons";
@@ -63,9 +63,14 @@ class Form extends React.Component {
     }
 
     createQRCode = async () => {
-        const result = await qrcode.toDataURL('some');
-        console.log(result);
+        const qrImage = await QRCode.toDataURL(this.state.shortUrl);
+        const ancerTag = document.createElement('a');
+        ancerTag.href = qrImage;
+        ancerTag.download = `${this.state.shortUrl}-QR-Code`;
+        ancerTag.click();
+        return;
     }
+
 
     render() {
         let form = '';

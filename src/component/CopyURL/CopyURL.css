@@ -2,8 +2,10 @@
     background-color: white;
     width: 600px;
     position: fixed;
-    top: 20%;
+    top: 30%;
     left: 30%;
+    bottom: 38%;
+    right: 38%;
     border-radius: 10px;
     box-sizing: border-box;
     z-index: 100;
