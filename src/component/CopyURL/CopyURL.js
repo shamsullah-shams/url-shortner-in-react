@@ -4,12 +4,12 @@ import "./CopyURL.css";
 
 const copyForm = (props) => {
 
-
+    
     let classess = '';
     if(props.show) {
         classess = ['CopyURL' , 'Show']
     } else {
-        classess = ['CopyURL' , 'Closed']
+        classess = ['CopyURL' , 'Hide']
     }
 
     return (

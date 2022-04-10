@@ -1,11 +1,12 @@
 import React from "react";
 import axios from "axios";
 import QRCode from 'qrcode';
+import { FacebookIcon } from "react-share"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
-import { faDiamondTurnRight } from "@fortawesome/free-solid-svg-icons";
-import { faSquareShareNodes } from "@fortawesome/free-solid-svg-icons";
-import { faQrcode } from "@fortawesome/free-solid-svg-icons";
+import { faCopy,
+    faDiamondTurnRight,
+    faSquareShareNodes,
+    faQrcode } from "@fortawesome/free-solid-svg-icons";
 import Input from "../../component/Input/Input";
 import Label from "../../component/Label/Label";
 import Button from "../../component/Button/Button";
@@ -71,6 +72,10 @@ class Form extends React.Component {
         return;
     }
 
+    shareURLHandler = () => {
+        return 
+    }
+
 
     render() {
         let form = '';
@@ -103,7 +108,7 @@ class Form extends React.Component {
                     <Button onClick={this.createQRCode} className="Go">
                         <FontAwesomeIcon icon={faQrcode} />
                     </Button>
-                    <Button className="Go">
+                    <Button onClick={this.shareURLHandler} className="Go">
                         <FontAwesomeIcon icon={faSquareShareNodes} />
                     </Button>
                 </div>

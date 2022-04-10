@@ -1,0 +1,63 @@
+import React from "react";
+import axios from "axios";
+import Aux from "../../hoc/Auxx";
+import Popup from "../../component/Popup/Popup";
+import Backdrop from "../../component/UI/Backdrop/Backdrop";
+import "./SignupForm.css";
+
+class SignupForm extends React.Component {
+
+    state = {
+        name : '',
+        email : '',
+        username : 'uiks',
+    }
+   
+    InputonChangeHandler = (event) => {
+        if(event.target.name === 'name') {
+            this.setState({name : event.target.value});
+        } else if(event.target.name === 'email') {
+            this.setState({email : event.target.value});
+        }
+    }
+
+    signupFormOnSubmitHandler = async () => {
+        const newUser = {
+            name : this.state.name,
+            email : this.state.email,
+        }
+        try {
+            const result = await axios.post('http://localhost:8080/user/create' , newUser);
+            console.log(result.data.token);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    render() {
+        let classess = '';
+        if(this.props.show) {
+            classess = ['CopyURL' , this.props.className , 'Show'];
+        } else {
+            classess = ['CopyURL' , this.props.className , 'Hide'];
+        }
+        return (
+            <Aux>
+                <Backdrop show={true} />
+                <Popup username={this.state.username} show={true}/>
+                <div className={classess.join(' ')}>
+                    <h1 className="Heading">Sign Up</h1>
+                    <hr /> 
+                    <input type="text" onChange={this.InputonChangeHandler} placeholder="Enter Name" name="name" className="CopyInput" />
+                    <input type="email" onChange={this.InputonChangeHandler} placeholder="Enter Email" name="email" className="CopyInput" />
+                    <div className="Button">
+                        <button onClick={this.signupFormOnSubmitHandler} className="Original Copy">Submit</button>
+                        <button onClick={this.props.cancel} className="Original Cancel">Cancel</button>
+                    </div>
+                </div>
+            </Aux>
+        )
+    }
+}
+
+export default SignupForm;

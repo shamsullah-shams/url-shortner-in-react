@@ -9,7 +9,7 @@ const navigationItems = (props) => {
             <ul className="NavigationItems">
                 <NavigationItem>My Urls</NavigationItem>
                 <NavigationItem>Sign in</NavigationItem>
-                <NavigationItem>Sign up</NavigationItem>
+                <NavigationItem onClick={props.signup}>Sign up</NavigationItem>
             </ul>
             <ToggleButton />
         </div>

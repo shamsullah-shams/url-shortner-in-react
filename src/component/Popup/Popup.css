@@ -1,0 +1,46 @@
+.Popup {
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    position: fixed;
+    top: 40%;
+    left: 30%;
+    bottom: 40%;
+    right: 30%;
+    border-radius: 10px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.Show {
+    display: block;
+}
+
+.Hide {
+    display: none;
+}
+
+.Heading {
+    width: 250px;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+.OK {
+    margin: 10px auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.OK {
+    border: 1px solid green;
+    color: green;
+}
+
+.OK:hover,
+.OK:active {
+    color: white;
+    background-color: green;
+}
