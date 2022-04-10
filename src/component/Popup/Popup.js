@@ -15,10 +15,12 @@ const copyForm = (props) => {
     return (
         <Aux>
             <div className={classess.join(' ')}>
-                <h1 className="Heading">Important !</h1>
-                    <button className="Heading">{props.username}</button>
-                    <p>This is your username please remember it and next time sign in with this user name and we will give you your history</p>
-                <button className="OK">OK</button>
+                <div className="Display">
+                    <h1>Important !</h1>
+                        <button className="Important">{props.username}</button>
+                        <p>In the red box you can see your user name please remember it and next time use it</p>
+                    <button onClick={props.ok} className="OK">OK</button>
+                </div>
             </div>
         </Aux>
     )

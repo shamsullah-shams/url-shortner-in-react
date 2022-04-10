@@ -11,6 +11,8 @@ class SignupForm extends React.Component {
         name : '',
         email : '',
         username : 'uiks',
+        showBackdrop : true,
+        showPopup : true,
     }
    
     InputonChangeHandler = (event) => {
@@ -19,6 +21,10 @@ class SignupForm extends React.Component {
         } else if(event.target.name === 'email') {
             this.setState({email : event.target.value});
         }
+    }
+
+    OKHandler = () => {
+        this.setState({showBackdrop : false , showPopup : false})
     }
 
     signupFormOnSubmitHandler = async () => {
@@ -43,8 +49,8 @@ class SignupForm extends React.Component {
         }
         return (
             <Aux>
-                <Backdrop show={true} />
-                <Popup username={this.state.username} show={true}/>
+                <Backdrop onClick={this.OKHandler} show={this.state.showBackdrop} />
+                <Popup ok={this.OKHandler} username={this.state.username} show={this.state.showPopup}/>
                 <div className={classess.join(' ')}>
                     <h1 className="Heading">Sign Up</h1>
                     <hr /> 
