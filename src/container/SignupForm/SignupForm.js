@@ -10,9 +10,9 @@ class SignupForm extends React.Component {
     state = {
         name : '',
         email : '',
-        username : 'uiks',
-        showBackdrop : true,
-        showPopup : true,
+        username : '',
+        showBackdrop : false,
+        showPopup : false,
     }
    
     InputonChangeHandler = (event) => {
@@ -34,7 +34,11 @@ class SignupForm extends React.Component {
         }
         try {
             const result = await axios.post('http://localhost:8080/user/create' , newUser);
-            console.log(result.data.token);
+            if(result.data.token) {
+                this.setState({username : result.data.token});
+            } else {
+                
+            }
         } catch (error) {
             console.log(error);
         }
