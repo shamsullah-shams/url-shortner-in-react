@@ -13,6 +13,7 @@ class SignupForm extends React.Component {
         username : '',
         showBackdrop : false,
         showPopup : false,
+        showSignUpForm : true,
     }
    
     InputonChangeHandler = (event) => {
@@ -34,8 +35,14 @@ class SignupForm extends React.Component {
         }
         try {
             const result = await axios.post('http://localhost:8080/user/create' , newUser);
+            console.log(result.data.token);
+            console.log(result.data.message)
             if(result.data.token) {
                 this.setState({username : result.data.token});
+                this.setState({showPopup : true, showSignUpForm : false,showBackdrop : true});
+                setTimeout(() => {
+                    this.setState({showPopup : false});
+                }, 20000);
             } else {
                 
             }
@@ -46,9 +53,14 @@ class SignupForm extends React.Component {
 
     render() {
         let classess = '';
-        if(this.props.show) {
+        if(this.state.showPopup) {
+            classess = ['CopyURL' , this.props.className , 'Hide'];
+        }
+        else if(this.props.show) {
             classess = ['CopyURL' , this.props.className , 'Show'];
-        } else {
+        }
+
+        else {
             classess = ['CopyURL' , this.props.className , 'Hide'];
         }
         return (
