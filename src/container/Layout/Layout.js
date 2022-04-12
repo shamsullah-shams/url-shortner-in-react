@@ -1,5 +1,5 @@
 import React from "react";
-import NavigationItems from "../../component/Navigation/NavigationItems";
+import NavigationItems from "../../component/Navigation/NavigationItems/NavigationItems";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import Logo from "../../component/Logo/Logo";
 import SignupForm from "../SignupForm/SignupForm";
