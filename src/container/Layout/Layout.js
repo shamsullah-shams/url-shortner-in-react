@@ -10,9 +10,9 @@ import './Layout.css';
 class Layout extends React.Component {
 
     state = {
-        showBackdrop : true,
+        showBackdrop : false,
         showSignupForm : false,
-        showSignin : true,
+        showSignin : false,
         username : '',
     }
 
@@ -36,6 +36,10 @@ class Layout extends React.Component {
         this.setState({showBackdrop : false , showSignin : false})
     }
 
+    showSigninFormHandler = () => {
+        this.setState({showBackdrop : true, showSignin : true});
+    }
+
     render() {
         return (
             <Aux>
@@ -45,7 +49,7 @@ class Layout extends React.Component {
 
                 <div className="Layout">
                     <Logo />
-                    <NavigationItems signup={this.showSignupFormHandler}/>
+                    <NavigationItems SignIn={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
                 </div>
                 <div>
                     {this.props.children}
