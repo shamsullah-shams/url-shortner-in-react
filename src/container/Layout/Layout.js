@@ -4,6 +4,7 @@ import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import Logo from "../../component/Logo/Logo";
 import SignupForm from "../SignupForm/SignupForm";
 import SignIn from "../../component/Signin/Signin";
+import ToggleButton from "../../component/ToggleButton/ToggleButton";
 import './Layout.css';
 
 class Layout extends React.Component {
@@ -49,6 +50,7 @@ class Layout extends React.Component {
                 <div className="Layout">
                     <Logo />
                     <NavigationItems signin={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
+                    <ToggleButton />
                 </div>
                 <div>
                     {this.props.children}
