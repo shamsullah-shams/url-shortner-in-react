@@ -1,0 +1,10 @@
+.NavigationItem {
+    list-style: none;
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+.NavigationItem:hover,
+.NavigationItem:active {
+    font-weight: bold;
+}
