@@ -1,15 +1,14 @@
 import React from "react";
 import axios from "axios";
 import QRCode from 'qrcode';
-import { FacebookIcon } from "react-share"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy,
     faDiamondTurnRight,
     faSquareShareNodes,
     faQrcode } from "@fortawesome/free-solid-svg-icons";
-import Input from "../../component/Input/Input";
-import Label from "../../component/Label/Label";
-import Button from "../../component/Button/Button";
+import Input from "../../component/UI/Input/Input";
+import Label from "../../component/UI/Label/Label";
+import Button from "../../component/UI/Button/Button";
 import Content from "../../component/Content/Content";
 import BackgroundImage from "../../component/UI/BackgroundImage/BackgroundImage";
 import CopyForm from "../../component/CopyURL/CopyURL";
