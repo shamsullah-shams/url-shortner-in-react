@@ -1,5 +1,4 @@
 import React from "react";
-import Aux from "../../hoc/Auxx";
 import "./Signin.css";
 
 const signIn = (props) => {
@@ -13,7 +12,7 @@ const signIn = (props) => {
     }
 
     return (
-        <Aux>
+        <div>
             <div className={classess.join(' ')}>
                 <div className="Display">
                     <h1 className="Heading">Sing In</h1>
@@ -26,7 +25,7 @@ const signIn = (props) => {
                     </div>
                 </div>
             </div>
-        </Aux>
+        </div>
     )
 };
 

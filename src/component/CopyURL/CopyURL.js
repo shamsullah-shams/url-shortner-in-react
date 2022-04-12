@@ -1,5 +1,4 @@
 import React from "react";
-import Aux from "../../hoc/Auxx";
 import "./CopyURL.css";
 
 const copyForm = (props) => {
@@ -13,7 +12,7 @@ const copyForm = (props) => {
     }
 
     return (
-        <Aux>
+        <div>
             <div className={classess.join(' ')}>
                 <h1 className="Heading">Copy URL</h1>
                 <hr /> 
@@ -23,7 +22,7 @@ const copyForm = (props) => {
                     <button onClick={props.cancel} className="Original Cancel">Cancel</button>
                 </div>
             </div>
-        </Aux>
+        </div>
     )
 };
 

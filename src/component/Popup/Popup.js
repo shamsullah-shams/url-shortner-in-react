@@ -1,5 +1,4 @@
 import React from "react";
-import Aux from "../../hoc/Auxx";
 import "./Popup.css";
 
 const copyForm = (props) => {
@@ -13,7 +12,7 @@ const copyForm = (props) => {
     }
 
     return (
-        <Aux>
+        <div>
             <div className={classess.join(' ')}>
                 <div className="Display">
                     <h1>Important !</h1>
@@ -22,7 +21,7 @@ const copyForm = (props) => {
                     <button onClick={props.ok} className="OK">OK</button>
                 </div>
             </div>
-        </Aux>
+        </div>
     )
 };
 

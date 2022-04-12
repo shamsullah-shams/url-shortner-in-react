@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import Aux from "../../hoc/Auxx";
 import Popup from "../../component/Popup/Popup";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import "./SignupForm.css";
@@ -64,7 +63,7 @@ class SignupForm extends React.Component {
             classess = ['CopyURL' , this.props.className , 'Hide'];
         }
         return (
-            <Aux>
+            <div>
                 <Backdrop onClick={this.OKHandler} show={this.state.showBackdrop} />
                 <Popup ok={this.OKHandler} username={this.state.username} show={this.state.showPopup}/>
                 <div className={classess.join(' ')}>
@@ -77,7 +76,7 @@ class SignupForm extends React.Component {
                         <button onClick={this.props.cancel} className="Original Cancel">Cancel</button>
                     </div>
                 </div>
-            </Aux>
+            </div>
         )
     }
 }

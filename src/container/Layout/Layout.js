@@ -1,5 +1,4 @@
 import React from "react";
-import Aux from "../../hoc/Auxx";
 import NavigationItems from "../../component/Navigation/NavigationItems";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import Logo from "../../component/Logo/Logo";
@@ -42,19 +41,19 @@ class Layout extends React.Component {
 
     render() {
         return (
-            <Aux>
+            <div>
                 <Backdrop show={this.state.showBackdrop} onClick={this.closeBackDropHandler} />
                 <SignupForm className="Signup" show={this.state.showSignupForm} cancel={this.closeBackDropHandler} />
                 <SignIn onChange={this.onChangeHandler} onSubmit={this.onSubmitHandler} cancel={this.onCancelHandler} show={this.state.showSignin} />
 
                 <div className="Layout">
                     <Logo />
-                    <NavigationItems SignIn={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
+                    <NavigationItems signin={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
                 </div>
                 <div>
                     {this.props.children}
                 </div>
-            </Aux>
+            </div>
         )
     }
 }
