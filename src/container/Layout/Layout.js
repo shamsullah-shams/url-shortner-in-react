@@ -5,6 +5,7 @@ import Logo from "../../component/Logo/Logo";
 import SignupForm from "../SignupForm/SignupForm";
 import SignIn from "../../component/Signin/Signin";
 import ToggleButton from "../../component/ToggleButton/ToggleButton";
+import SideDrawer from "../../component/Navigation/SideDrawer/Sidedrawer";
 import './Layout.css';
 
 class Layout extends React.Component {
@@ -13,15 +14,16 @@ class Layout extends React.Component {
         showBackdrop : false,
         showSignupForm : false,
         showSignin : false,
+        showSideDrawer : false,
         username : '',
     }
 
     showSignupFormHandler = () => {
-        this.setState({showBackdrop : true , showSignupForm : true});
+        this.setState({showBackdrop : true , showSignupForm : true ,showSignin : false , showSideDrawer : false});
     }
     
     closeBackDropHandler = () => {
-        this.setState({showBackdrop : false, showSignupForm : false, showSignin : false});
+        this.setState({showBackdrop : false, showSignupForm : false, showSignin : false, showSideDrawer : false});
     }
 
     onChangeHandler = (event) => {
@@ -33,24 +35,29 @@ class Layout extends React.Component {
     }
 
     onCancelHandler = () => {
-        this.setState({showBackdrop : false , showSignin : false})
+        this.setState({showBackdrop : true , showSignupForm : true ,showSignin : false , showSideDrawer : false});
     }
 
     showSigninFormHandler = () => {
-        this.setState({showBackdrop : true, showSignin : true});
+        this.setState({showBackdrop : true , showSignupForm : false ,showSignin : true , showSideDrawer : false});
+    }
+
+    showSideDrawerHandler = () => {
+        this.setState({showBackdrop : true , showSignupForm : false ,showSignin : false , showSideDrawer : true});
     }
 
     render() {
         return (
             <div>
+                <SideDrawer show={this.state.showSideDrawer} signin={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
                 <Backdrop show={this.state.showBackdrop} onClick={this.closeBackDropHandler} />
                 <SignupForm className="Signup" show={this.state.showSignupForm} cancel={this.closeBackDropHandler} />
                 <SignIn onChange={this.onChangeHandler} onSubmit={this.onSubmitHandler} cancel={this.onCancelHandler} show={this.state.showSignin} />
 
                 <div className="Layout">
                     <Logo />
-                    <NavigationItems signin={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
-                    <ToggleButton />
+                    <NavigationItems className="ToolbarNavigationItems" signin={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
+                    <ToggleButton onClick={this.showSideDrawerHandler} />
                 </div>
                 <div>
                     {this.props.children}

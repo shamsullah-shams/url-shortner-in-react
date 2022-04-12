@@ -1,13 +1,19 @@
-.NavigationItems {
+.ToolbarNavigationItems {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
+.SideDrawerNavigationItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 @media (max-width : 600px) {
-    .NavigationItems {
+    .ToolbarNavigationItems {
         display: none;
     }
 }

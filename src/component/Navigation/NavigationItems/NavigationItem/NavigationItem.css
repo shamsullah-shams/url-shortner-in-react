@@ -8,3 +8,11 @@
 .NavigationItem:active {
     font-weight: bold;
 }
+
+@media (max-width : 600px) {
+    .NavigationItem {
+        margin: 5px 0;
+        padding: 5px;
+
+    }
+}
