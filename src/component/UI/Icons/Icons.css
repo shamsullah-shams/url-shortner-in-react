@@ -1,0 +1,50 @@
+.IconsPopup {
+    box-sizing: border-box;
+    display: block;
+    border: 1px solid rgb(190, 188, 188);
+    box-shadow: 1px 1px 1px 1px rgb(197, 196, 196);
+    padding: 0 8px;
+    margin: 8px auto;
+}
+
+.SCROLL {
+    overflow: auto;
+    width: 40%;
+    height: 60px;
+    white-space: nowrap;
+    margin: auto auto;
+}
+
+.Icons {
+    display: inline;
+    margin: auto 5px;
+}
+
+
+
+.CROSS {
+    background-color: white;
+    color: white;
+    background-color: red;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    position: fixed;
+    right: 0;
+    left: 94%;
+    cursor: pointer;
+}
+
+.CROSS:hover,
+.CROSS:active {
+    color: red;
+    background-color: white;
+}
+
+.Show {
+    display: block;
+}
+
+.Hide {
+    display: none;
+}

@@ -13,6 +13,7 @@ import Content from "../../component/Content/Content";
 import BackgroundImage from "../../component/UI/BackgroundImage/BackgroundImage";
 import CopyForm from "../../component/CopyURL/CopyURL";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
+import Icons from "../../component/Icons/Icons";
 import "./Form.css";
 
 class Form extends React.Component {
@@ -22,6 +23,7 @@ class Form extends React.Component {
         shortUrl : '',
         showCopyForm : false,
         showBackDrop : false,
+        showSharePopup: false,
     }
 
     onChangeHandler = (event) => {
@@ -72,9 +74,14 @@ class Form extends React.Component {
     }
 
     shareURLHandler = () => {
-        return 
+        this.setState((prevState) => ({
+            showSharePopup : !prevState.showSharePopup
+        })); 
     }
 
+    shareURLCloseHandler = () => {
+        this.setState({showSharePopup : false});
+    }
 
     render() {
         let form = '';
@@ -110,6 +117,7 @@ class Form extends React.Component {
                     <Button onClick={this.shareURLHandler} className="Go">
                         <FontAwesomeIcon icon={faSquareShareNodes} />
                     </Button>
+                    <Icons closed={this.shareURLCloseHandler} url={this.state.shortUrl} show={this.state.showSharePopup} />
                 </div>
             </div>
         }

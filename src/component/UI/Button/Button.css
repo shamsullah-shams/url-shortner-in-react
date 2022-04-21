@@ -1,13 +1,12 @@
 .Submit {
-    margin: 10px auto;
     box-sizing: border-box;
     padding: 10px;
-    display: block;
     width: 80%;
     border-radius: 5px;
-    color: white;
     cursor: pointer;
+    color: white;
     background-color:  #1896af;
+    margin: 10px 10%;
 }
 
 .Submit:hover,
@@ -18,7 +17,7 @@
 }
 
 .Go {
-    margin: 0 19px;
+    margin: 0 18px;
     border-radius: 5px;
     cursor: pointer;
     width: 42px;
