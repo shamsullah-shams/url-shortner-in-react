@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Popup from "../../component/Popup/Popup";
+import Popup from "../../component/Popup/Attention";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import "./SignupForm.css";
 

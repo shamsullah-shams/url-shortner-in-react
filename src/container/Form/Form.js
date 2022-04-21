@@ -11,7 +11,7 @@ import Label from "../../component/UI/Label/Label";
 import Button from "../../component/UI/Button/Button";
 import Content from "../../component/Content/Content";
 import BackgroundImage from "../../component/UI/BackgroundImage/BackgroundImage";
-import CopyForm from "../../component/CopyURL/CopyURL";
+import CopyForm from "../../component/Popup/CopyURL";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import Icons from "../../component/UI/Icons/Icons";
 import "./Form.css";

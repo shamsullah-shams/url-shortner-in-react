@@ -3,7 +3,7 @@ import NavigationItems from "../../component/Navigation/NavigationItems/Navigati
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import Logo from "../../component/Logo/Logo";
 import SignupForm from "../SignupForm/SignupForm";
-import SignIn from "../../component/Signin/Signin";
+import SignIn from "../../component/Popup/Signin";
 import ToggleButton from "../../component/Navigation/ToggleButton/ToggleButton";
 import SideDrawer from "../../component/Navigation/SideDrawer/Sidedrawer";
 import './Layout.css';
