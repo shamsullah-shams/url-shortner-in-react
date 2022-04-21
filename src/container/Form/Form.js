@@ -13,7 +13,7 @@ import Content from "../../component/Content/Content";
 import BackgroundImage from "../../component/UI/BackgroundImage/BackgroundImage";
 import CopyForm from "../../component/CopyURL/CopyURL";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
-import Icons from "../../component/Icons/Icons";
+import Icons from "../../component/UI/Icons/Icons";
 import "./Form.css";
 
 class Form extends React.Component {
