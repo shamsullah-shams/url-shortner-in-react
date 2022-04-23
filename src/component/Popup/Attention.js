@@ -11,7 +11,7 @@ const copyForm = (props) => {
 
     return (
         <div className={classess}>
-            <Popup>
+            <Popup cancel={props.cancel}>
                 <div>
                     <div className="Display">
                         <h1>Important !</h1>

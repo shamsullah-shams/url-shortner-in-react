@@ -12,7 +12,7 @@ const signup = (props) => {
 
     return (
         <div className={classess}>
-            <Popup>
+            <Popup cancel={props.cancel}>
                 <div className="Display">
                     <h1 className="Heading">Sign Up</h1>
                     <hr /> 

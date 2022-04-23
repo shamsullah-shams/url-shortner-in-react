@@ -37,8 +37,9 @@ class Form extends React.Component {
                 url : this.state.longUrl
             };
             try {
-                const result = await axios.post('http://192.168.43.73:8080/create/shortUrl' , url);
-                this.setState({shortUrl : result.data.shortUrl});     
+                const result = await axios.post('http://localhost:8080/create/shortUrl' , url);
+                this.setState({shortUrl : result.data.shortUrl});  
+                console.log(result.data.shortUrl);   
             } catch (error) {
                 console.log(error);
             }
@@ -77,6 +78,11 @@ class Form extends React.Component {
 
     cancelHandler = () => {
         this.setState({showSharePopup : false , showBackDrop : false , showCopyForm : false});
+    }
+
+    shareURLCloseHandler = () => {
+        console.log('cla');
+        this.setState({showSharePopup : false});
     }
 
     render() {

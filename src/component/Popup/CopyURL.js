@@ -11,14 +11,14 @@ const copyForm = (props) => {
 
     return (
         <div className={classess}>
-            <Popup>
+            <Popup cancel={props.cancel}>
                 <div>
                     <h1 className="Heading">Copy URL</h1>
                     <hr /> 
                     <input readOnly type="text" value={props.value} className="CopyInput" />
                     <div className="Button">
-                        <button onClick={props.copy} className="Original Copy">Copy</button>
-                        <button onClick={props.cancel} className="Original Cancel">Cancel</button>
+                        <button onClick={props.copy} className="SignInSubmit" >Copy</button>
+                        <button onClick={props.cancel} className="SignInCancel">Cancel</button>
                     </div>
                 </div>
             </Popup>
