@@ -37,7 +37,7 @@ class Form extends React.Component {
                 url : this.state.longUrl
             };
             try {
-                const result = await axios.post('http://localhost:8080/create/shortUrl' , url);
+                const result = await axios.post('http://192.168.43.73:8080/create/shortUrl' , url);
                 this.setState({shortUrl : result.data.shortUrl});  
                 console.log(result.data.shortUrl);   
             } catch (error) {
@@ -49,10 +49,10 @@ class Form extends React.Component {
     copyUrlHandler = async () => {
         if(this.state.shortUrl !== '') {
             try {
-               await navigator.clipboard.writeText(this.state.shortUrl);
-               this.cancelHandler();
+                await navigator.clipboard.writeText(this.state.shortUrl);
+                this.setState({showBackDrop : false, showCopyForm : false});
             } catch (error) {
-                
+                console.log(error);
             }
         }
     }

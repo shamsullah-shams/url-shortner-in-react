@@ -15,7 +15,45 @@ class Layout extends React.Component {
         showSignupForm : false,
         showSignin : false,
         showSideDrawer : false,
-        username : '',
+        signinEmail : '',
+        signinPassword: '',
+        signupName: '',
+        signupEmail: '',
+        signupPassword: '',
+    }
+
+    gettingSignInFormValuesHandler = (event) => {
+        if(event.target.name === "signinEmail") {
+            this.setState({signinName : event.target.value});
+        } 
+        else if(event.target.name === "signinPassword") {
+            this.setState({signinPassword : event.target.value});
+        }
+    }
+
+    submittingSigninFormHandler = () => {
+        console.log(this.state.signinName);
+        console.log(this.state.signinPassword);
+        this.onCancelHandler();
+    }
+
+    signUpFormValuesHandler = (event) => {
+        if(event.target.name === "signupName") {
+            this.setState({signupName : event.target.value});
+        } 
+        else if(event.target.name === "signupEmail") {
+            this.setState({signupEmail : event.target.value});
+        }
+        else if(event.target.name === "signupPassword") {
+            this.setState({signupPassword : event.target.value});
+        }
+    }
+
+    submitSignupFormHandler = () => {
+        console.log(this.state.signupName)
+        console.log(this.state.signupEmail)
+        console.log(this.state.signupPassword)
+        this.onCancelHandler();
     }
 
     showSignupFormHandler = () => {
@@ -51,8 +89,8 @@ class Layout extends React.Component {
             <div>
                 <SideDrawer show={this.state.showSideDrawer} signin={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
                 <Backdrop show={this.state.showBackdrop} onClick={this.closeBackDropHandler} />
-                <Signup className="Signup" show={this.state.showSignupForm} cancel={this.closeBackDropHandler} />
-                <SignIn onChange={this.onChangeHandler} onSubmit={this.onSubmitHandler} cancel={this.onCancelHandler} show={this.state.showSignin} />
+                <Signup show={this.state.showSignupForm} cancel={this.closeBackDropHandler} onChange={this.signUpFormValuesHandler} onSubmit={this.submitSignupFormHandler} />
+                <SignIn onChange={this.gettingSignInFormValuesHandler} onSubmit={this.submittingSigninFormHandler} cancel={this.onCancelHandler} show={this.state.showSignin} />
                 <div className="Layout">
                     <Logo />
                     <NavigationItems className="ToolbarNavigationItems" signin={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
