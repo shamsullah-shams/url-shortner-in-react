@@ -4,10 +4,11 @@
     width: 350px;
     height: auto;
     position: absolute;
-    top: 38%;
-    left: 15%;
+    top: 39%;
+    left: 8%;
     z-index: 100;
     box-sizing: border-box;
+    text-align: center;
 }
 
 .OriginalPopupCROSS {
@@ -115,4 +116,46 @@ hr {
 .SignInCancel:active {
     color: white;
     background-color: red;
+}
+
+@media (min-width : 450px) {
+    .OriginalPopup {
+        left: 15%;
+    }
+}
+
+@media (min-width : 560px) {
+    .OriginalPopup {
+        left: 18%;
+    }
+}
+
+@media (min-width : 600px) {
+    .OriginalPopup {
+        left: 22%;
+    }
+}
+
+@media (min-width : 700px) {
+    .OriginalPopup {
+        left: 27%;
+    }
+}
+
+@media (min-width : 800px) {
+    .OriginalPopup {
+        left: 23%;
+    }
+}
+
+@media (min-width : 1000px) {
+    .OriginalPopup {
+        left: 36%;
+    }
+}
+
+@media (min-width : 1200px) {
+    .OriginalPopup {
+        left: 38%;
+    }
 }

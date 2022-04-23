@@ -3,10 +3,12 @@ import "./Popup.css";
 
 const popup = (props) => {
     return (
-        <div className="OriginalPopup">
-            <div className="OriginalPopupCROSS">X</div>
-            <div className="Display">
-                    {props.children}
+        <div className="Manage">
+            <div className="OriginalPopup">
+                <div onClick={props.cancel} className="OriginalPopupCROSS">X</div>
+                <div className="Display">
+                        {props.children}
+                </div>
             </div>
         </div>
     )
