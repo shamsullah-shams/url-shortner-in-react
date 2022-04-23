@@ -2,10 +2,10 @@ import React from "react";
 import NavigationItems from "../../component/Navigation/NavigationItems/NavigationItems";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import Logo from "../../component/Logo/Logo";
-import SignupForm from "../SignupForm/SignupForm";
 import SignIn from "../../component/Popup/Signin";
 import ToggleButton from "../../component/Navigation/ToggleButton/ToggleButton";
 import SideDrawer from "../../component/Navigation/SideDrawer/Sidedrawer";
+import Signup from "../../component/Popup/Signup";
 import './Layout.css';
 
 class Layout extends React.Component {
@@ -51,9 +51,8 @@ class Layout extends React.Component {
             <div>
                 <SideDrawer show={this.state.showSideDrawer} signin={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
                 <Backdrop show={this.state.showBackdrop} onClick={this.closeBackDropHandler} />
-                <SignupForm className="Signup" show={this.state.showSignupForm} cancel={this.closeBackDropHandler} />
+                <Signup className="Signup" show={this.state.showSignupForm} cancel={this.closeBackDropHandler} />
                 <SignIn onChange={this.onChangeHandler} onSubmit={this.onSubmitHandler} cancel={this.onCancelHandler} show={this.state.showSignin} />
-
                 <div className="Layout">
                     <Logo />
                     <NavigationItems className="ToolbarNavigationItems" signin={this.showSigninFormHandler} signup={this.showSignupFormHandler}/>
