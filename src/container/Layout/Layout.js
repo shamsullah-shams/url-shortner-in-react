@@ -35,7 +35,7 @@ class Layout extends React.Component {
     }
 
     onCancelHandler = () => {
-        this.setState({showBackdrop : true , showSignupForm : true ,showSignin : false , showSideDrawer : false});
+        this.setState({showBackdrop : false , showSignupForm : false ,showSignin : false , showSideDrawer : false});
     }
 
     showSigninFormHandler = () => {

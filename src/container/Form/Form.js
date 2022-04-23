@@ -49,7 +49,7 @@ class Form extends React.Component {
         if(this.state.shortUrl !== '') {
             try {
                await navigator.clipboard.writeText(this.state.shortUrl);
-               this.setState({showBackDrop : false, showCopyForm : false})
+               this.cancelHandler();
             } catch (error) {
                 
             }
@@ -58,10 +58,6 @@ class Form extends React.Component {
 
     copyDecisionHandler = () => {
         this.setState({showBackDrop : true , showCopyForm : true});
-    }
-
-    cancelCopyURLHandler = () => {
-        this.setState({showBackDrop : false, showCopyForm : false});
     }
 
     createQRCode = async () => {
@@ -79,8 +75,8 @@ class Form extends React.Component {
         })); 
     }
 
-    shareURLCloseHandler = () => {
-        this.setState({showSharePopup : false});
+    cancelHandler = () => {
+        this.setState({showSharePopup : false , showBackDrop : false , showCopyForm : false});
     }
 
     render() {
@@ -123,8 +119,8 @@ class Form extends React.Component {
         }
         return (
             <BackgroundImage>
-                <CopyForm value={this.state.shortUrl} show={this.state.showCopyForm} copy={this.copyUrlHandler} cancel={this.cancelCopyURLHandler} />
-                <Backdrop show={this.state.showBackDrop} onClick={this.cancelCopyURLHandler} />
+                <CopyForm value={this.state.shortUrl} show={this.state.showCopyForm} copy={this.copyUrlHandler} cancel={this.cancelHandler} />
+                <Backdrop show={this.state.showBackDrop} onClick={this.cancelHandler} />
                 <Content />
                 { form }
             </BackgroundImage>

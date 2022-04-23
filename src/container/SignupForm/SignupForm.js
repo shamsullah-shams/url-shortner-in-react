@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import Popup from "../../component/Popup/Attention";
+import Attention from "../../component/Popup/Attention";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
-import "./SignupForm.css";
+import Signup from "../../component/Popup/Signup";
 
 class SignupForm extends React.Component {
 
@@ -62,20 +62,13 @@ class SignupForm extends React.Component {
         else {
             classess = ['CopyURL' , this.props.className , 'Hide'];
         }
+
+
         return (
             <div>
                 <Backdrop onClick={this.OKHandler} show={this.state.showBackdrop} />
-                <Popup ok={this.OKHandler} username={this.state.username} show={this.state.showPopup}/>
-                <div className={classess.join(' ')}>
-                    <h1 className="Heading">Sign Up</h1>
-                    <hr /> 
-                    <input type="text" onChange={this.InputonChangeHandler} placeholder="Enter Name" name="name" className="CopyInput" />
-                    <input type="email" onChange={this.InputonChangeHandler} placeholder="Enter Email" name="email" className="CopyInput" />
-                    <div className="Button">
-                        <button onClick={this.signupFormOnSubmitHandler} className="Original Copy">Submit</button>
-                        <button onClick={this.props.cancel} className="Original Cancel">Cancel</button>
-                    </div>
-                </div>
+                <Attention ok={this.OKHandler} username={this.state.username} show={this.state.showPopup}/>
+                <Signup show={this.state.showSignUpForm} />
             </div>
         )
     }
