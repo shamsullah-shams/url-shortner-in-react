@@ -32,8 +32,9 @@ class Layout extends React.Component {
     }
 
     submittingSigninFormHandler = () => {
-        console.log(this.state.signinName);
-        console.log(this.state.signinPassword);
+        if(this.state.signinEmail === '' || this.state.signinPassword === '') {
+            return console.log("not valid")
+        }
         this.onCancelHandler();
     }
 
