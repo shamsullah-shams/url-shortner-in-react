@@ -24,6 +24,7 @@ class Form extends React.Component {
         showCopyForm : false,
         showBackDrop : false,
         showSharePopup: false,
+        token : '',
     }
 
     onChangeHandler = (event) => {
@@ -37,9 +38,10 @@ class Form extends React.Component {
                 url : this.state.longUrl
             };
             try {
-                const result = await axios.post('http://192.168.43.73:8080/create/shortUrl' , url);
-                this.setState({shortUrl : result.data.shortUrl});  
-                console.log(result.data.shortUrl);   
+                const result = await axios.post('http://localhost:8080/create/shortUrl' , url);
+                const token = result.data.shortUrl.split('/')[3];
+                this.setState({shortUrl : result.data.shortUrl, token : token}); 
+                console.log(token)  
             } catch (error) {
                 console.log(error);
             }
@@ -47,14 +49,7 @@ class Form extends React.Component {
     }
 
     copyUrlHandler = async () => {
-        if(this.state.shortUrl !== '') {
-            try {
-                await navigator.clipboard.writeText(this.state.shortUrl);
-                this.setState({showBackDrop : false, showCopyForm : false});
-            } catch (error) {
-                console.log(error);
-            }
-        }
+        this.setState({showBackDrop : false, showCopyForm : false});
     }
 
     copyDecisionHandler = () => {
@@ -75,13 +70,19 @@ class Form extends React.Component {
             showSharePopup : !prevState.showSharePopup
         })); 
     }
+    
+    redirectToShortUrl =  () => {
+        window.open(this.state.token);
+    }
+
+
+
 
     cancelHandler = () => {
         this.setState({showSharePopup : false , showBackDrop : false , showCopyForm : false});
     }
 
     shareURLCloseHandler = () => {
-        console.log('cla');
         this.setState({showSharePopup : false});
     }
 
@@ -107,9 +108,9 @@ class Form extends React.Component {
                         <Input value={this.state.shortUrl} readOnly  />
                         <Button disable className="Submit">Shorten Another</Button>
                     </form>
-                    <Button className="Go">
-                        <FontAwesomeIcon icon={faDiamondTurnRight} />
-                    </Button>
+                    <Button className="Go" onClick={this.redirectToShortUrl}>
+                            <FontAwesomeIcon icon={faDiamondTurnRight} />
+                        </Button>
                     <Button onClick={this.copyDecisionHandler} className="Go">
                         <FontAwesomeIcon icon={faCopy} />
                     </Button>
