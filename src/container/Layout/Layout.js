@@ -22,7 +22,8 @@ class Layout extends React.Component {
             email: {
                 value : '',
                 validation : {
-                    required : true
+                    required : true,
+                    minlength : 10,
                 },
                 valid : false,
                 touched : false,
@@ -41,7 +42,8 @@ class Layout extends React.Component {
             name: {
                 value : '',
                 validation : {
-                    required : true
+                    required : true,
+                    minlength : 3,
                 },
                 valid : false,
                 touched : false,
@@ -49,7 +51,8 @@ class Layout extends React.Component {
             email:  {
                 value : '',
                 validation : {
-                    required : true
+                    required : true,
+                    minlength : 10
                 },
                 valid : false,
                 touched : false,
@@ -102,8 +105,6 @@ class Layout extends React.Component {
 
     submittingSigninFormHandler = () => {
 
-        console.log('submitted');
-        console.log(this.state.signinForm);
         
     }
 
@@ -167,7 +168,7 @@ class Layout extends React.Component {
             newuser[identifier] = this.state.signUpForm[identifier].value;
         }
 
-        const result = await axios.post('http://localhost:8080/user/create' , newuser);
+        const result = await axios.post('http://192.168.43.73:8080/user/create' , newuser);
         if(result.status === 200) {
             alert('account created');
             this.onCancelHandler();

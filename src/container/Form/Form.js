@@ -19,32 +19,65 @@ import "./Form.css";
 class Form extends React.Component {
 
     state = {
-        longUrl : '',
+
         shortUrl : '',
+        longUrl : {
+            value : '',
+            validation : {
+                required : true,
+                minlength : 12,
+            },
+            valid : false,
+            touched : false,
+        },
         showCopyForm : false,
         showBackDrop : false,
         showSharePopup: false,
         token : '',
+        formIsValid : false,
+    }
+
+    checkValidity(value , rules) {
+        let isValid = true;
+
+        if(rules.required) {
+            isValid = value.trim() !== '' && isValid;
+        }
+
+        if(rules.minlength) {
+            isValid = value.length >= rules.minlength && isValid;
+        }
+
+        return isValid;
     }
 
     onChangeHandler = (event) => {
-        this.setState({longUrl : event.target.value});
+
+        const updateLongURL = { ...this.state.longUrl };
+        updateLongURL.value = event.target.value;
+        updateLongURL.touched = true;
+        updateLongURL.valid = this.checkValidity(
+            updateLongURL.value, updateLongURL.validation
+        );
+
+        const formIsValid = updateLongURL.valid;
+
+        this.setState({longUrl : updateLongURL, formIsValid : formIsValid})
     }
 
     onSubmitHandler = async (event) => {
         event.preventDefault(event);
-        if(this.state.longUrl !== '') {
-            const url = {
-                url : this.state.longUrl
-            };
-            try {
-                const result = await axios.post('http://localhost:8080/create/shortUrl' , url);
-                const token = result.data.shortUrl.split('/')[3];
-                this.setState({shortUrl : result.data.shortUrl, token : token});
-            } catch (error) {
-                console.log(error);
-            }
+        const url = { 
+            longURL : this.state.longUrl.value
         }
+        try {
+            const result = await axios.post('http://192.168.43.73:8080/create/shortUrl' , url);
+            const token = result.data.shortUrl.split('/')[3];
+            this.setState({shortUrl : result.data.shortUrl, token : token});
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
 
     copyUrlHandler = async () => {
@@ -93,7 +126,7 @@ class Form extends React.Component {
                 <form  className="Form Single-Form-Only" onSubmit={this.onSubmitHandler}>
                     <Label>Enter Long URL</Label>
                     <Input onChange={this.onChangeHandler} placeholder="Enter Long URL" />
-                    <Button className="Submit">Submit</Button>
+                    <Button disabled={!this.state.formIsValid } className="Submit">Submit</Button>
                 </form>
             </div>
         } else {
@@ -102,7 +135,11 @@ class Form extends React.Component {
                 <div className="Form">
                     <form onSubmit={this.onSubmitHandler}>
                         <Label>Your Long URL</Label>
-                        <Input value={this.state.longUrl} onChange={this.onChangeHandler} placeholder="Enter Long URL" />
+                        <Input 
+                            value={this.state.longUrl.value} 
+                            onChange={this.onChangeHandler} 
+                            placeholder="Enter Long URL" 
+                        />
                         <Label>ShortUrl</Label>
                         <Input value={this.state.shortUrl} readOnly  />
                         <Button disable className="Submit">Shorten Another</Button>
