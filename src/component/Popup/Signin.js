@@ -15,13 +15,29 @@ const signIn = (props) => {
                     <div className="Display">
                         <h1 className="Heading">Sing In</h1>
                         <hr/> 
-                        <label>Enter Email Name</label>
-                        <input onChange={props.onChange} name="signinEmail" type="text" placeholder="Enter User Name" />
-                        <label>Enter Password Name</label>
-                        <input onChange={props.onChange} name="signinPassword" type="text" placeholder="Enter User Name" />
+                        <label>Enter Email</label>
+                        <input 
+                            onChange={props.onChange} 
+                            className={props.emailInvalid && props.emailTouched ? "Invalid" : ''} 
+                            type="email"  
+                            placeholder="Enter Email" 
+                            name="signinEmail" 
+                        />
+                        <label>Enter Password</label>
+                        <input 
+                            onChange={props.onChange} 
+                            className={props.passwordInvalid && props.passwordTouched ? "Invalid" : ''} 
+                            type="password" 
+                            name="signinPassword" 
+                            placeholder="Enter Password" 
+                        />
                         <div className="Button">
-                            <button onClick={props.onSubmit} className="SignInSubmit" >Submit</button>
-                            <button onClick={props.cancel} className="SignInCancel">Cancel</button>
+                            <button disabled={props.disabled}
+                                onClick={props.onSubmit} 
+                                className={props.disabled ? "Disabled" : "SignInSubmit"} >Submit</button>
+                            <button 
+                                onClick={props.cancel} 
+                                className="SignInCancel">Cancel</button>
                         </div>
                     </div>
                 </div>

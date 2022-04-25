@@ -81,6 +81,19 @@ hr {
     color: green;
 }
 
+.Invalid {
+    border: 1px solid red;
+}
+
+.Disabled {
+    color: rgb(92, 91, 91);
+    border: 1px solid rgb(92, 91, 91);
+    margin: 10px auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 70px;
+}
+
 .OK:hover,
 .OK:active {
     color: white;
@@ -98,24 +111,26 @@ hr {
 
 
 .SignInSubmit {
+    color: white;
+    background-color: green;
     border: 1px solid green;
-    color: green;
 }
 
 .SignInSubmit:hover,
 .SignInSubmit:active {
-    color: white;
-    background-color: green;
+    color: green;
+    background-color: white;
 }
 .SignInCancel {
     border: 1px solid red;
-    color: red;
+    color: white;
+    background-color: red;
 }
 
 .SignInCancel:hover,
 .SignInCancel:active {
-    color: white;
-    background-color: red;
+    color: red;
+    background-color: white;
 }
 
 @media (min-width : 450px) {
