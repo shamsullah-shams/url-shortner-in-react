@@ -7,12 +7,15 @@ import SignIn from "../../component/Popup/Signin";
 import ToggleButton from "../../component/Navigation/ToggleButton/ToggleButton";
 import SideDrawer from "../../component/Navigation/SideDrawer/Sidedrawer";
 import Signup from "../../component/Popup/Signup";
+import Attention from "../../component/Popup/Attention";
 import './Layout.css';
 
 class Layout extends React.Component {
 
     state = {
         showBackdrop : false,
+        showMessagePopup : false,
+        message : '',
         showSignupForm : false,
         showSignin : false,
         showSideDrawer : false,
@@ -103,8 +106,26 @@ class Layout extends React.Component {
        
     }
 
-    submittingSigninFormHandler = () => {
+    submittingSigninFormHandler = async () => {
 
+        const newuser = {};
+        for(let identifier in this.state.signinForm) {
+            newuser[identifier] = this.state.signinForm[identifier].value;
+        }
+        try {
+            const result = await axios.post('http://localhost:8080/user/signin', newuser);
+            this.setState({
+                message : result.data.message,
+                showMessagePopup : true,
+                showBackdrop : true,
+                showSignin : false
+            });
+            if(result.status === 201) {
+                localStorage.setItem("userEmail" , newuser.email);
+            }
+        } catch (error) {
+            
+        }
         
     }
 
@@ -167,12 +188,16 @@ class Layout extends React.Component {
         for(let identifier in this.state.signUpForm) {
             newuser[identifier] = this.state.signUpForm[identifier].value;
         }
+        const result = await axios.post('http://localhost:8080/user/signup' , newuser);
+        console.log(result)
+        this.setState({
+            message : result.data.message,
+            showMessagePopup : true,
+            showBackdrop : true,
+            showSignupForm : false
+        });
+         
 
-        const result = await axios.post('http://192.168.43.73:8080/user/create' , newuser);
-        if(result.status === 200) {
-            alert('account created');
-            this.onCancelHandler();
-        }
     }
 
     showSignupFormHandler = () => {
@@ -189,7 +214,9 @@ class Layout extends React.Component {
             showBackdrop : false, 
             showSignupForm : false,
             showSignin : false,
-            showSideDrawer : false
+            showSideDrawer : false,
+            showMessagePopup : false,
+            message : null,
         });
     }
 
@@ -214,6 +241,11 @@ class Layout extends React.Component {
     render() {
         return (
             <div>
+                <Attention 
+                    show={this.state.showMessagePopup} 
+                    ok={this.onCancelHandler}
+                    message={this.state.message} 
+                />
                 <SideDrawer 
                     show={this.state.showSideDrawer} 
                     signin={this.showSigninFormHandler} 

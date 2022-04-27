@@ -11,12 +11,11 @@ const copyForm = (props) => {
 
     return (
         <div className={classess}>
-            <Popup cancel={props.cancel}>
+            <Popup cancel={props.ok}>
                 <div>
                     <div className="Display">
                         <h1>Important !</h1>
-                            <button className="Important">{props.username}</button>
-                            <p>In the red box you can see your user name please remember it and next time use it</p>
+                        <p>{props.message}</p>
                         <button onClick={props.ok} className="OK">OK</button>
                     </div>
                 </div>

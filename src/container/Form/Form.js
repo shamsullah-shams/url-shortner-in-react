@@ -14,6 +14,7 @@ import BackgroundImage from "../../component/UI/BackgroundImage/BackgroundImage"
 import CopyForm from "../../component/Popup/CopyURL";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import Icons from "../../component/UI/Icons/Icons";
+import Attention from "../../component/Popup/Attention";
 import "./Form.css";
 
 class Form extends React.Component {
@@ -25,6 +26,7 @@ class Form extends React.Component {
             value : '',
             validation : {
                 required : true,
+                startWith : true,
                 minlength : 12,
             },
             valid : false,
@@ -34,18 +36,25 @@ class Form extends React.Component {
         showBackDrop : false,
         showSharePopup: false,
         token : '',
+        showMessagePopup : false,
+        message : '',
         formIsValid : false,
     }
 
     checkValidity(value , rules) {
         let isValid = true;
+        const doMatchValue = new String(value)
 
         if(rules.required) {
             isValid = value.trim() !== '' && isValid;
         }
 
         if(rules.minlength) {
-            isValid = value.length >= rules.minlength && isValid;
+            isValid = doMatchValue.length >= rules.minlength && isValid;
+        }
+
+        if(rules.startWith) {
+            isValid = (doMatchValue.startsWith('http') || doMatchValue.startsWith('www')) && isValid;
         }
 
         return isValid;
@@ -71,11 +80,17 @@ class Form extends React.Component {
             longURL : this.state.longUrl.value
         }
         try {
-            const result = await axios.post('http://192.168.43.73:8080/create/shortUrl' , url);
+            const result = await axios.post('http://localhost:8080/create/shortUrl' , url);
             const token = result.data.shortUrl.split('/')[3];
-            this.setState({shortUrl : result.data.shortUrl, token : token});
+            this.setState({
+                shortUrl : result.data.shortUrl,
+                token : token, 
+                message : result.data.message,
+                showMessagePopup : true,
+                showBackDrop : true,
+            });
         } catch (error) {
-            console.log(error);
+
         }
         
     }
@@ -111,7 +126,13 @@ class Form extends React.Component {
 
 
     cancelHandler = () => {
-        this.setState({showSharePopup : false , showBackDrop : false , showCopyForm : false});
+        this.setState({
+            showSharePopup : false,
+            showBackDrop : false,
+            showCopyForm : false,
+            showMessagePopup : false,
+            message : null,
+        });
     }
 
     shareURLCloseHandler = () => {
@@ -162,8 +183,21 @@ class Form extends React.Component {
         }
         return (
             <BackgroundImage>
-                <CopyForm value={this.state.shortUrl} show={this.state.showCopyForm} copy={this.copyUrlHandler} cancel={this.cancelHandler} />
-                <Backdrop show={this.state.showBackDrop} onClick={this.cancelHandler} />
+                <Attention 
+                    show={this.state.showMessagePopup} 
+                    message={this.state.message} 
+                    ok={this.cancelHandler}
+                />
+                <CopyForm 
+                    value={this.state.shortUrl} 
+                    show={this.state.showCopyForm} 
+                    copy={this.copyUrlHandler} 
+                    cancel={this.cancelHandler} 
+                />
+                <Backdrop 
+                    show={this.state.showBackDrop} 
+                    onClick={this.cancelHandler} 
+                />
                 <Content />
                 { form }
             </BackgroundImage>
