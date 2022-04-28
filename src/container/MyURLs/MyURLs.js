@@ -9,13 +9,13 @@ class MyURLs extends React.Component {
     state = {
         request : 0,
         myurls : null,
+        createForm : false,
+        token : null,
     }
 
     getLongURL = async () => {
         let myurls = '';
-        const token = {
-            usertoken : localStorage.getItem('urlShortnertoken')
-        }
+        const token = localStorage.getItem('urlShortnertoken')
 
         if(!token) {
             myurls = (
@@ -26,32 +26,42 @@ class MyURLs extends React.Component {
                 </div>
             )
         } else {
-            const result = await axios.post('http://localhost:8080/user/getHistory' , token);
-
-            if(!result.data.allurls) {
-                myurls =  (
-                    <div>
-                        <center>
-                            No History In the database
-                        </center>
-                    </div>
-                )
-            } else {
-                myurls = result.data.allurls.map((item) => {
-                    return (
+            try {
+                const result = await axios.post('http://localhost:8080/user/getHistory' , {
+                    usertoken : token,
+                });
+    
+                if(!result.data.allurls) {
+                    myurls =  (
                         <div>
-                            <div className="SingleBox">
-                                <label>longUrl</label>
-                                <input readOnly value={item.originalUrl} />
-                                <label>shortUrl</label>
-                                <input readOnly value={item.shortUrl}/>
-                            </div>
+                            <center>
+                                No History In the database
+                            </center>
                         </div>
                     )
-                })
+                } else {
+                    myurls = (
+                        result.data.allurls.map((item) => {
+                            return (
+                                <div>
+                                    <div className="SingleBox">
+                                        <label>longUrl</label>
+                                        <input readOnly value={item.originalUrl} />
+                                        <label>shortUrl</label>
+                                        <input readOnly value={item.shortUrl}/>
+                                    </div>
+                                </div>
+                            )
+                        })
+                        
+                    ) 
+                    this.setState({createForm : true});
+                }
+            } catch (error) {
+                
             }
         }
-       this.setState({myurls : myurls ,request : 1});
+       this.setState({myurls : myurls ,request : 1, token : token});
     }
 
     render() {
@@ -60,13 +70,8 @@ class MyURLs extends React.Component {
             this.getLongURL();
         }
     
-        let attatchedClassess = 'Hide';
-        if(this.props.show) {
-            attatchedClassess = '';
-        }
-    
         return (
-            <div className={attatchedClassess}>
+            <div >
                 <div className="GetAllHistory">
                     <div onClick={this.props.cancel} className="CloseSideBar">
                         X
@@ -74,7 +79,12 @@ class MyURLs extends React.Component {
                     <div className="ExternalDiv">
                         {this.state.myurls}
                     </div>
-                    
+                    {
+                        this.state.createForm ?
+                            <div className="DeleteHistoryDiv">
+                                <button className="DeleteHistoryButton">Delete History</button>
+                            </div> : null
+                    }
                 </div>
             </div>
         )

@@ -14,6 +14,8 @@ import './Layout.css';
 class Layout extends React.Component {
 
     state = {
+        loadMyUrls : false,
+        showMyUrls : false,
         showBackdrop : false,
         showMessagePopup : false,
         message : '',
@@ -21,7 +23,6 @@ class Layout extends React.Component {
         showSignin : false,
         showSideDrawer : false,
         accoutCreate : false,
-        showMyUrls : false,
 
         signinForm : {
             email: {
@@ -222,6 +223,7 @@ class Layout extends React.Component {
             showMessagePopup : false,
             showMyUrls : false,
             message : null,
+            loadMyUrls : false,
         });
     }
 
@@ -234,8 +236,9 @@ class Layout extends React.Component {
 
     showMyUrlsHandler = () => {
         this.setState({
-            showMyUrls : true,
             showBackdrop : true,
+            loadMyUrls : true,
+            showMyUrls : true
         })
     }
 
@@ -249,7 +252,10 @@ class Layout extends React.Component {
     render() {
         return (
             <div>
-                <MyURLs show={this.state.showMyUrls} cancel={this.onCancelHandler} />
+                {this.state.loadMyUrls ? <MyURLs show={this.state.showMyUrls}
+                    cancel={this.onCancelHandler} 
+                /> : ''}
+                
                 <Attention 
                     show={this.state.showMessagePopup} 
                     ok={this.onCancelHandler}
@@ -259,6 +265,7 @@ class Layout extends React.Component {
                     show={this.state.showSideDrawer} 
                     signin={this.showSigninFormHandler} 
                     signup={this.showSignupFormHandler}
+                    myurls={this.showMyUrlsHandler}
                 />
                 <Backdrop 
                     show={this.state.showBackdrop} 

@@ -12,7 +12,11 @@ const sideDrawer = ( props ) => {
 
     return (
         <div className={classes.join(' ')}>
-            <NavigationItems signin={props.signin} signup={props.signup} className="SideDrawerNavigationItems" />
+            <NavigationItems 
+                signin={props.signin} 
+                signup={props.signup}
+                myurls={props.myurls} 
+                className="SideDrawerNavigationItems" />
         </div>
     )
 };

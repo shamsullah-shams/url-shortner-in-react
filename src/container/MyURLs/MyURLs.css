@@ -48,3 +48,33 @@
     height: 100%;
     overflow: auto;
 }
+
+.DeleteHistoryDiv {
+    width: 200px;
+    margin: 3px auto;
+    box-sizing: border-box;
+}
+
+.DeleteHistoryButton {
+    width: 90%;
+    margin: 5px auto;
+    margin-top: 0;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid red;
+    border-radius: 5px;
+    color: red;
+}
+
+.DeleteHistoryButton:hover,
+.DeleteHistoryButton button:active {
+    color: white;
+    background-color: red;
+}
+
+
+@media (max-width : 500px) {
+    .GetAllHistory {
+        width: 70%;
+    }
+}
