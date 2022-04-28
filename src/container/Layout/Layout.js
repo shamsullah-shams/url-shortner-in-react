@@ -180,9 +180,7 @@ class Layout extends React.Component {
         for(let identifier in this.state.signUpForm) {
             newuser[identifier] = this.state.signUpForm[identifier].value;
         }
-        console.log(newuser);
         const result = await axios.post('http://localhost:8080/user/signup' , newuser);
-        console.log(result)
         this.setState({
             message : result.data.message,
             showMessagePopup : true,
