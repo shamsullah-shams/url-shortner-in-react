@@ -13,7 +13,7 @@
     }
   }
   
-  @media (max-height : 560px ){
+  @media (max-height : 500px ){
     .AllBody {
       height: 100%;
     }

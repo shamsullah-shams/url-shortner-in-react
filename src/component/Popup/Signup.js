@@ -34,7 +34,7 @@ const signup = (props) => {
                         placeholder="Enter Email" 
                         name="signupEmail" 
                     />
-                    <label>Enter Password</label>
+                    <label>Enter Password atleast 8 character</label>
                     <input 
                         onChange={props.onChange} 
                         className={props.passwordInvalid && props.passwordTouched ? "Invalid" : ''} 

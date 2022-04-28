@@ -7,12 +7,10 @@ const content = () => {
             <h1>Create Short Url</h1> 
                 <strong>
                     <p>
-                        This service is provided to make easy and short urls
+                        This service is provided by shamsullah shamsi to make short urls.
+                        and the short url works in 24 hours.
                     </p>
                 </strong>
-            <strong>
-                @copy shamsullah
-            </strong>
         </center>
     )
 };
