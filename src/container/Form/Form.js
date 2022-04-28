@@ -76,11 +76,20 @@ class Form extends React.Component {
 
     onSubmitHandler = async (event) => {
         event.preventDefault(event);
-        const url = { 
-            longURL : this.state.longUrl.value
+        let url = '';
+        const usertoken = localStorage.getItem('urlShortnertoken');
+        if(usertoken) {
+            url = { 
+                longURL : this.state.longUrl.value,
+                usertoken : usertoken,
+            }
+        } else {
+            url = {
+                longURL : this.state.longUrl.value,
+            }
         }
         try {
-            const result = await axios.post('http://localhost:8080/create/shortUrl' , url);
+            const result = await axios.post('http://localhost:8080/url/create/shortUrl' , url);
             const token = result.data.shortUrl.split('/')[3];
             this.setState({
                 shortUrl : result.data.shortUrl,

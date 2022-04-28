@@ -1,0 +1,50 @@
+.GetAllHistory {
+    position: fixed;
+    width: 50%;
+    max-width: 70%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 200;
+    background-color: white;
+    padding: 32px 16px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-out;
+    color: black;
+}
+
+.Hide {
+    display: none;
+}
+
+.CloseSideBar {
+    color: white;
+    background-color: red;
+    text-align: center;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.SingleBox {
+    width: 200px;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid rgb(185, 183, 183);
+    box-shadow: 1px 1px 1px 1px rgb(223, 219, 219);
+    border-radius: 10px;
+}
+.SingleBox input,
+.SingleBox label {
+    margin: 5px 0;
+}
+
+.ExternalDiv {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}

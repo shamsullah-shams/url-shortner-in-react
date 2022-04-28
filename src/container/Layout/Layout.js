@@ -8,6 +8,7 @@ import ToggleButton from "../../component/Navigation/ToggleButton/ToggleButton";
 import SideDrawer from "../../component/Navigation/SideDrawer/Sidedrawer";
 import Signup from "../../component/Popup/Signup";
 import Attention from "../../component/Popup/Attention";
+import MyURLs from "../MyURLs/MyURLs";
 import './Layout.css';
 
 class Layout extends React.Component {
@@ -20,6 +21,7 @@ class Layout extends React.Component {
         showSignin : false,
         showSideDrawer : false,
         accoutCreate : false,
+        showMyUrls : false,
 
         signinForm : {
             email: {
@@ -112,6 +114,7 @@ class Layout extends React.Component {
         for(let identifier in this.state.signinForm) {
             newuser[identifier] = this.state.signinForm[identifier].value;
         }
+        console.log(newuser);
         try {
             const result = await axios.post('http://localhost:8080/user/signin', newuser);
             this.setState({
@@ -121,7 +124,7 @@ class Layout extends React.Component {
                 showSignin : false
             });
             if(result.status === 201) {
-                localStorage.setItem("userEmail" , newuser.email);
+                localStorage.setItem("urlShortnertoken" , result.data.usertoken);
             }
         } catch (error) {
             
@@ -188,6 +191,7 @@ class Layout extends React.Component {
         for(let identifier in this.state.signUpForm) {
             newuser[identifier] = this.state.signUpForm[identifier].value;
         }
+        console.log(newuser);
         const result = await axios.post('http://localhost:8080/user/signup' , newuser);
         console.log(result)
         this.setState({
@@ -216,6 +220,7 @@ class Layout extends React.Component {
             showSignin : false,
             showSideDrawer : false,
             showMessagePopup : false,
+            showMyUrls : false,
             message : null,
         });
     }
@@ -223,17 +228,20 @@ class Layout extends React.Component {
     showSigninFormHandler = () => {
         this.setState({
             showBackdrop : true, 
-            showSignupForm : false,
             showSignin : true, 
-            showSideDrawer : false
         });
+    }
+
+    showMyUrlsHandler = () => {
+        this.setState({
+            showMyUrls : true,
+            showBackdrop : true,
+        })
     }
 
     showSideDrawerHandler = () => {
         this.setState({
             showBackdrop : true, 
-            showSignupForm : false,
-            showSignin : false,
              showSideDrawer : true
         });
     }
@@ -241,6 +249,7 @@ class Layout extends React.Component {
     render() {
         return (
             <div>
+                <MyURLs show={this.state.showMyUrls} cancel={this.onCancelHandler} />
                 <Attention 
                     show={this.state.showMessagePopup} 
                     ok={this.onCancelHandler}
@@ -285,6 +294,7 @@ class Layout extends React.Component {
                         className="ToolbarNavigationItems" 
                         signin={this.showSigninFormHandler} 
                         signup={this.showSignupFormHandler}
+                        myurls={this.showMyUrlsHandler}
                     />
                     <ToggleButton onClick={this.showSideDrawerHandler} />
                 </div>
