@@ -30,6 +30,7 @@ class MyURLs extends React.Component {
                 const result = await axios.post('http://localhost:8080/user/getHistory' , {
                     usertoken : token,
                 });
+                console.log(result.data.allurls);
     
                 if(!result.data.allurls) {
                     myurls =  (
@@ -39,6 +40,7 @@ class MyURLs extends React.Component {
                             </center>
                         </div>
                     )
+                    this.setState({createForm : false})
                 } else {
                     myurls = (
                         result.data.allurls.map((item) => {
@@ -82,7 +84,7 @@ class MyURLs extends React.Component {
                     {
                         this.state.createForm ?
                             <div className="DeleteHistoryDiv">
-                                <button className="DeleteHistoryButton">Delete History</button>
+                                <button onClick={this.props.delete} className="DeleteHistoryButton">Delete History</button>
                             </div> : null
                     }
                 </div>

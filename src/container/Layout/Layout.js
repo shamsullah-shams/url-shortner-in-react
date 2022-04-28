@@ -9,6 +9,8 @@ import SideDrawer from "../../component/Navigation/SideDrawer/Sidedrawer";
 import Signup from "../../component/Popup/Signup";
 import Attention from "../../component/Popup/Attention";
 import MyURLs from "../MyURLs/MyURLs";
+import deleteMyUrls from "../../DeleteMyUrls";
+import checkValidity from "../../checkValidity";
 import './Layout.css';
 
 class Layout extends React.Component {
@@ -87,7 +89,7 @@ class Layout extends React.Component {
         if(event.target.name === "signinEmail") {
             updatedSigninFormEmail.value = event.target.value;
             updatedSigninFormEmail.touched = true;
-            updatedSigninFormEmail.valid = this.checkValidity(
+            updatedSigninFormEmail.valid = checkValidity(
                 updatedSigninFormEmail.value, updatedSigninFormEmail.validation
             );
         }
@@ -95,7 +97,7 @@ class Layout extends React.Component {
         else if(event.target.name === "signinPassword") {
             updatedSigninFormPassword.value = event.target.value;
             updatedSigninFormPassword.touched = true;
-            updatedSigninFormPassword.valid = this.checkValidity(
+            updatedSigninFormPassword.valid = checkValidity(
                 updatedSigninFormPassword.value, updatedSigninFormPassword.validation
             );
         }
@@ -143,21 +145,21 @@ class Layout extends React.Component {
         if(event.target.name === "signupName") {
             updatedSignupFormName.value = event.target.value;
             updatedSignupFormName.touched = true;
-            updatedSignupFormName.valid = this.checkValidity(
+            updatedSignupFormName.valid = checkValidity(
                 updatedSignupFormName.value, updatedSignupFormName.validation
             );
         } 
         else if(event.target.name === "signupEmail") {
             updatedSignupFormEmail.value = event.target.value;
             updatedSignupFormEmail.touched = true;
-            updatedSignupFormEmail.valid = this.checkValidity(
+            updatedSignupFormEmail.valid = checkValidity(
                 updatedSignupFormEmail.value, updatedSignupFormEmail.validation
             );
         }
         else if(event.target.name === "signupPassword") {
             updatedSignupFormPassword.value = event.target.value;
             updatedSignupFormPassword.touched = true;
-            updatedSignupFormPassword.valid = this.checkValidity(
+            updatedSignupFormPassword.valid = checkValidity(
                 updatedSignupFormPassword.value, updatedSignupFormPassword.validation
             );
         }
@@ -169,20 +171,6 @@ class Layout extends React.Component {
         updatedSignupForm.password = updatedSignupFormPassword;
 
         this.setState({signUpForm : updatedSignupForm , signupFormIsValid : signupFormIsValid});
-    }
-
-    checkValidity(value , rules) {
-        let isValid = true;
-
-        if(rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if(rules.minlength) {
-            isValid = value.length >= rules.minlength && isValid;
-        }
-
-        return isValid;
     }
 
     submitSignupFormHandler = async () => {
@@ -231,6 +219,12 @@ class Layout extends React.Component {
         this.setState({
             showBackdrop : true, 
             showSignin : true, 
+            showSideDrawer : false,
+            showMessagePopup : false,
+            showSignupForm : false,
+            showMyUrls : false,
+            message : null,
+            loadMyUrls : false,
         });
     }
 
@@ -238,8 +232,18 @@ class Layout extends React.Component {
         this.setState({
             showBackdrop : true,
             loadMyUrls : true,
-            showMyUrls : true
+            showMyUrls : true,
+            showSignin : false, 
+            showSideDrawer : false,
+            showMessagePopup : false,
+            showSignupForm : false,
+            message : null,
         })
+    }
+
+    deleteHistory = () => {
+        deleteMyUrls();
+        this.onCancelHandler();
     }
 
     showSideDrawerHandler = () => {
@@ -252,8 +256,10 @@ class Layout extends React.Component {
     render() {
         return (
             <div>
-                {this.state.loadMyUrls ? <MyURLs show={this.state.showMyUrls}
-                    cancel={this.onCancelHandler} 
+                {this.state.loadMyUrls ? <MyURLs 
+                    show={this.state.showMyUrls}
+                    cancel={this.onCancelHandler}
+                    delete={this.deleteHistory} 
                 /> : ''}
                 
                 <Attention 

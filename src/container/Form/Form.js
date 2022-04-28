@@ -15,6 +15,7 @@ import CopyForm from "../../component/Popup/CopyURL";
 import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import Icons from "../../component/UI/Icons/Icons";
 import Attention from "../../component/Popup/Attention";
+import checkValidity from "../../checkValidity";
 import "./Form.css";
 
 class Form extends React.Component {
@@ -41,31 +42,13 @@ class Form extends React.Component {
         formIsValid : false,
     }
 
-    checkValidity(value , rules) {
-        let isValid = true;
-        const doMatchValue = new String(value)
-
-        if(rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if(rules.minlength) {
-            isValid = doMatchValue.length >= rules.minlength && isValid;
-        }
-
-        if(rules.startWith) {
-            isValid = (doMatchValue.startsWith('http') || doMatchValue.startsWith('www')) && isValid;
-        }
-
-        return isValid;
-    }
 
     onChangeHandler = (event) => {
 
         const updateLongURL = { ...this.state.longUrl };
         updateLongURL.value = event.target.value;
         updateLongURL.touched = true;
-        updateLongURL.valid = this.checkValidity(
+        updateLongURL.valid = checkValidity(
             updateLongURL.value, updateLongURL.validation
         );
 
