@@ -1,6 +1,6 @@
 import React , { Component } from "react";
 import axios from "axios";
-import NotFound from "./notFound";
+import NotFound from "../notFound";
 
 
 
