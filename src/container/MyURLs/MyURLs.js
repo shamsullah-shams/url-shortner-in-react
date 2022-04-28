@@ -30,7 +30,6 @@ class MyURLs extends React.Component {
                 const result = await axios.post('http://localhost:8080/user/getHistory' , {
                     usertoken : token,
                 });
-                console.log(result.data.allurls);
     
                 if(!result.data.allurls) {
                     myurls =  (
@@ -43,9 +42,9 @@ class MyURLs extends React.Component {
                     this.setState({createForm : false})
                 } else {
                     myurls = (
-                        result.data.allurls.map((item) => {
+                        result.data.allurls.map((item , index) => {
                             return (
-                                <div>
+                                <div key={index}>
                                     <div className="SingleBox">
                                         <label>longUrl</label>
                                         <input readOnly value={item.originalUrl} />
