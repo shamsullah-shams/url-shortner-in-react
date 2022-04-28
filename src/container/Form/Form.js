@@ -79,7 +79,7 @@ class Form extends React.Component {
         }
 
         try {
-            const result = await axios.post('/url/create/shortUrl' , url);
+            const result = await axios.post('http://localhost:8080/url/create/shortUrl' , url);
             const token = result.data.shortUrl.split('/')[3];
             this.setState({
                 shortUrl : result.data.shortUrl,

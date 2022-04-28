@@ -119,7 +119,7 @@ class Layout extends React.Component {
         }
         console.log(newuser);
         try {
-            const result = await axios.post('/user/signin', newuser);
+            const result = await axios.post('http://localhost:8080/user/signin', newuser);
             this.setState({
                 message : result.data.message,
                 showMessagePopup : true,
@@ -180,7 +180,7 @@ class Layout extends React.Component {
         for(let identifier in this.state.signUpForm) {
             newuser[identifier] = this.state.signUpForm[identifier].value;
         }
-        const result = await axios.post('/user/signup' , newuser);
+        const result = await axios.post('http://localhost:8080/user/signup' , newuser);
         this.setState({
             message : result.data.message,
             showMessagePopup : true,

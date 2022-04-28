@@ -27,7 +27,7 @@ class MyURLs extends React.Component {
             )
         } else {
             try {
-                const result = await axios.post('/user/getHistory' , {
+                const result = await axios.post('http://localhost:8080/user/getHistory' , {
                     usertoken : token,
                 });
     
