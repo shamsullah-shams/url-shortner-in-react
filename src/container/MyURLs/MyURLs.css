@@ -64,7 +64,7 @@
     border: 1px solid red;
     border-radius: 5px;
     color: red;
-}
+} 
 
 .DeleteHistoryButton:hover,
 .DeleteHistoryButton button:active {
