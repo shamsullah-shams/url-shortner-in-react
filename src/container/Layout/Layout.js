@@ -17,7 +17,6 @@ class Layout extends React.Component {
 
     state = {
         loadMyUrls : false,
-        showMyUrls : false,
         showBackdrop : false,
         showMessagePopup : false,
         message : '',
@@ -255,26 +254,37 @@ class Layout extends React.Component {
         return (
             <div>
                 {this.state.loadMyUrls ? <MyURLs 
-                    show={this.state.showMyUrls}
+                    show={this.state.loadMyUrls}
                     cancel={this.onCancelHandler}
                     delete={this.deleteHistory} 
                 /> : ''}
                 
-                <Attention 
-                    show={this.state.showMessagePopup} 
-                    ok={this.onCancelHandler}
-                    message={this.state.message} 
-                />
-                <SideDrawer 
-                    show={this.state.showSideDrawer} 
-                    signin={this.showSigninFormHandler} 
-                    signup={this.showSignupFormHandler}
-                    myurls={this.showMyUrlsHandler}
-                />
-                <Backdrop 
-                    show={this.state.showBackdrop} 
-                    onClick={this.onCancelHandler} 
-                />
+                {this.state.showMessagePopup ? 
+                    <Attention 
+                        show={this.state.showMessagePopup} 
+                        ok={this.onCancelHandler}
+                        message={this.state.message} 
+                    />
+                    : ''
+                }
+
+                {this.state.showSideDrawer ? 
+                    <SideDrawer 
+                        show={this.state.showSideDrawer} 
+                        signin={this.showSigninFormHandler} 
+                        signup={this.showSignupFormHandler}
+                        myurls={this.showMyUrlsHandler}
+                    />
+                    : ''
+                }
+
+                {this.state.showBackdrop ? 
+                    <Backdrop 
+                        show={this.state.showBackdrop} 
+                        onClick={this.onCancelHandler} 
+                    />
+                    : ''
+                }
                 <Signup 
                     show={this.state.showSignupForm} 
                     cancel={this.onCancelHandler} 

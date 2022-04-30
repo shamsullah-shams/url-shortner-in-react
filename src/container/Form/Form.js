@@ -176,21 +176,31 @@ class Form extends React.Component {
         }
         return (
             <BackgroundImage>
-                <Attention 
-                    show={this.state.showMessagePopup} 
-                    message={this.state.message} 
-                    ok={this.cancelHandler}
-                />
-                <CopyForm 
-                    value={this.state.shortUrl} 
-                    show={this.state.showCopyForm} 
-                    copy={this.copyUrlHandler} 
-                    cancel={this.cancelHandler} 
-                />
-                <Backdrop 
-                    show={this.state.showBackDrop} 
-                    onClick={this.cancelHandler} 
-                />
+                {this.state.showMessagePopup ? 
+                    <Attention 
+                        show={this.state.showMessagePopup} 
+                        message={this.state.message} 
+                        ok={this.cancelHandler}
+                    />
+                    : ''
+                }
+
+                {this.state.showCopyForm ? 
+                    <CopyForm 
+                        value={this.state.shortUrl} 
+                        show={this.state.showCopyForm} 
+                        copy={this.copyUrlHandler} 
+                        cancel={this.cancelHandler} 
+                    />
+                    : ''
+                }
+                {this.state.showBackDrop ? 
+                    <Backdrop 
+                        show={this.state.showBackDrop} 
+                        onClick={this.cancelHandler} 
+                    />
+                    : ''
+                }
                 <Content />
                 { form }
             </BackgroundImage>
