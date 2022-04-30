@@ -1,6 +1,6 @@
 const checkValidity = (value , rules) => {
     let isValid = true;
-    const doMatchValue = new String(value)
+    const doMatchValue = value;
 
     if(rules.required) {
         isValid = value.trim() !== '' && isValid;

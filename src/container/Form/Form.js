@@ -27,8 +27,7 @@ class Form extends React.Component {
             value : '',
             validation : {
                 required : true,
-                startWith : true,
-                minlength : 12,
+                minlength : 5,
             },
             valid : false,
             touched : false,
@@ -60,26 +59,21 @@ class Form extends React.Component {
     onSubmitHandler = async (event) => {
         event.preventDefault(event);
         let check = this.state.longUrl.value;
-        let url = '';
+        let longURL = '';
+        const currentHostName = window.location.href.split('?')[0];
         const usertoken = localStorage.getItem('urlShortnertoken');
-        if(!check.startsWith('http')) {
-            url = {
-                longURL : 'http://' + check,
-            }
-        }
-        if(usertoken) {
-            url = { 
-                longURL : 'http://' + check,
-                usertoken : usertoken,
-            }
+        if(check.startsWith('http:') || check.startsWith('https:')) {
+                longURL = check;
         } else {
-            url = {
-                longURL : 'http://' + check,
-            }
+            longURL = "https://" + check;
         }
 
         try {
-            const result = await axios.post('http://localhost:8080/url/create/shortUrl' , url);
+            const result = await axios.post('http://localhost:8080/url/create/shortUrl' , {
+                longURL : longURL,
+                currentHostName : currentHostName,
+                usertoken : usertoken,
+            } );
             const token = result.data.shortUrl.split('/')[3];
             this.setState({
                 shortUrl : result.data.shortUrl,
