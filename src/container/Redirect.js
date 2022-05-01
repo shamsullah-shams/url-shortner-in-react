@@ -15,7 +15,7 @@ class Redirect extends Component {
     getLongURL = async () => {
         const uri = window.location.href;
         const token = uri.split('/')[3];
-        const result = await axios.get(`http://localhost:8080/url/${token}`);
+        const result = await axios.get(`/url/${token}`);
         this.setState((prevState) => ({
             request : !prevState.request + 1,
             originalUrl : result.data.longurl
