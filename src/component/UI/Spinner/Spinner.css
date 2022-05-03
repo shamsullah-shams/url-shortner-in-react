@@ -5,11 +5,11 @@
     z-index: 300;
     top: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .Loader {
-    color: white;
+    color: black;
     font-size: 90px;
     text-indent: -9999em;
     overflow: hidden;
