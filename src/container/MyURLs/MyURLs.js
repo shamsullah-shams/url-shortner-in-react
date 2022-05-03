@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Spinner from "../../component/UI/Spinner/Spinner";
 import "./MyURLs.css";
 
 
@@ -7,6 +8,7 @@ import "./MyURLs.css";
 class MyURLs extends React.Component {
 
     state = {
+        showSpinner : false,
         request : 0,
         myurls : null,
         createForm : false,
@@ -27,6 +29,7 @@ class MyURLs extends React.Component {
             )
         } else {
             try {
+                this.setState({showSpinner : true});
                 const result = await axios.post('/user/getHistory' , {
                     usertoken : token,
                 });
@@ -39,7 +42,7 @@ class MyURLs extends React.Component {
                             </center>
                         </div>
                     )
-                    this.setState({createForm : false})
+                    this.setState({createForm : false , showSpinner : false,})
                 } else {
                     myurls = (
                         result.data.allurls.map((item , index) => {
@@ -56,7 +59,7 @@ class MyURLs extends React.Component {
                         })
                         
                     ) 
-                    this.setState({createForm : true});
+                    this.setState({createForm : true , showSpinner : false});
                 }
             } catch (error) {
                 
@@ -73,6 +76,10 @@ class MyURLs extends React.Component {
     
         return (
             <div >
+                {
+                    this.state.showSpinner ? <Spinner show={this.state.showSpinner} />
+                    : ''
+                }
                 <div className="GetAllHistory">
                     <div onClick={this.props.cancel} className="CloseSideBar">
                         X
