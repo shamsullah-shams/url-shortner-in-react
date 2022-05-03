@@ -11,11 +11,13 @@ import Attention from "../../component/Popup/Attention";
 import MyURLs from "../MyURLs/MyURLs";
 import deleteMyUrls from "../../DeleteMyUrls";
 import checkValidity from "../../checkValidity";
+import Spinner from "../../component/UI/Spinner/Spinner";
 import './Layout.css';
 
 class Layout extends React.Component {
 
     state = {
+        showSpinner : false,
         loadMyUrls : false,
         showBackdrop : false,
         showMessagePopup : false,
@@ -111,7 +113,7 @@ class Layout extends React.Component {
     }
 
     submittingSigninFormHandler = async () => {
-
+        this.setState({showSpinner : true});
         const newuser = {};
         for(let identifier in this.state.signinForm) {
             newuser[identifier] = this.state.signinForm[identifier].value;
@@ -120,6 +122,7 @@ class Layout extends React.Component {
         try {
             const result = await axios.post('/user/signin', newuser);
             this.setState({
+                showSpinner : false,
                 message : result.data.message,
                 showMessagePopup : true,
                 showBackdrop : true,
@@ -173,7 +176,7 @@ class Layout extends React.Component {
     }
 
     submitSignupFormHandler = async () => {
-
+        this.setState({showSpinner : true});
         const newuser = {};
 
         for(let identifier in this.state.signUpForm) {
@@ -181,6 +184,7 @@ class Layout extends React.Component {
         }
         const result = await axios.post('/user/signup' , newuser);
         this.setState({
+            showSpinner : false,
             message : result.data.message,
             showMessagePopup : true,
             showBackdrop : true,
@@ -209,6 +213,7 @@ class Layout extends React.Component {
             showMyUrls : false,
             message : null,
             loadMyUrls : false,
+            showSpinner : false,
         });
     }
 
@@ -253,6 +258,10 @@ class Layout extends React.Component {
     render() {
         return (
             <div>
+                {this.state.showSpinner ? 
+                    <Spinner show={this.state.showSpinner} />
+                    : ''
+                }
                 {this.state.loadMyUrls ? <MyURLs 
                     show={this.state.loadMyUrls}
                     cancel={this.onCancelHandler}

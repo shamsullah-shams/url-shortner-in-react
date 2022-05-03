@@ -16,12 +16,13 @@ import Backdrop from "../../component/UI/Backdrop/Backdrop";
 import Icons from "../../component/UI/Icons/Icons";
 import Attention from "../../component/Popup/Attention";
 import checkValidity from "../../checkValidity";
+import Spinner from "../../component/UI/Spinner/Spinner";
 import "./Form.css";
 
 class Form extends React.Component {
 
     state = {
-
+        showSpinner: false,
         shortUrl : '',
         longUrl : {
             value : '',
@@ -58,6 +59,7 @@ class Form extends React.Component {
 
     onSubmitHandler = async (event) => {
         event.preventDefault(event);
+        this.setState({showSpinner : true});
         let check = this.state.longUrl.value;
         let longURL = '';
         const currentHostName = window.location.href.split('?')[0];
@@ -76,11 +78,13 @@ class Form extends React.Component {
             } );
             const token = result.data.shortUrl.split('/')[3];
             this.setState({
+                showSpinner : false,
                 shortUrl : result.data.shortUrl,
                 token : token, 
                 message : result.data.message,
                 showMessagePopup : true,
                 showBackDrop : true,
+
             });
         } catch (error) {
 
@@ -121,6 +125,7 @@ class Form extends React.Component {
     cancelHandler = () => {
         this.setState({
             showSharePopup : false,
+            showSpinner : false,
             showBackDrop : false,
             showCopyForm : false,
             showMessagePopup : false,
@@ -176,6 +181,10 @@ class Form extends React.Component {
         }
         return (
             <BackgroundImage>
+                {   this.state.showSpinner ? 
+                    <Spinner show={this.state.showSpinner} />
+                    : '' 
+                }
                 {this.state.showMessagePopup ? 
                     <Attention 
                         show={this.state.showMessagePopup} 
