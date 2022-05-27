@@ -70,11 +70,12 @@ class Form extends React.Component {
             longURL = "https://" + check;
         }
 
+        
         try {
-            const result = await axios.post('/url/create/shortUrl' , {
+            const result = await axios.post('http://localhost:8080/url/create/shortUrl' , {
                 longURL : longURL,
                 currentHostName : currentHostName,
-                usertoken : usertoken,
+                userId : usertoken,
             } );
             const token = result.data.shortUrl.split('/')[3];
             this.setState({
@@ -87,7 +88,6 @@ class Form extends React.Component {
 
             });
         } catch (error) {
-
         }
         
     }

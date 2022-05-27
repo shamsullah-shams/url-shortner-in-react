@@ -30,10 +30,9 @@ class MyURLs extends React.Component {
         } else {
             try {
                 this.setState({showSpinner : true});
-                const result = await axios.post('/user/getHistory' , {
+                const result = await axios.post('http://localhost:8080/user/getHistory' , {
                     usertoken : token,
                 });
-    
                 if(!result.data.allurls) {
                     myurls =  (
                         <div>
