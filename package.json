@@ -7,18 +7,19 @@
     "node": "14.17.6"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "start:dev": "nodemon app.js",
-    "client": "npm start --prefix client"
+    "start": "node backend/app.js ",
+    "dev": "nodemon backend/app.js ",
+    "client": "npm start --prefix frontend"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
+    "compression": "^1.7.4",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "mongodb": "^4.6.0",
+    "mongodb": "^4.7.0",
     "mongoose": "^6.3.4"
   }
 }
