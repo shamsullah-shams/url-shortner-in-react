@@ -102,7 +102,7 @@ exports.getHistory = async (req, res, next) => {
 exports.clearHistory = async (req, res, next) => {
     const { usertoken } = req.body;
     try {
-        await urlModel.deleteMany({ usertoken: usertoken });
+        await urlModel.deleteMany({ userId: usertoken });
         return res.status(200);
     } catch (e) {
         res.status(500).send({

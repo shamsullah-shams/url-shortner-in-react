@@ -3,7 +3,9 @@ In this project you can make a long url shorter and then you can use every where
 
 # You can find the React App by following link
 
-[url-shortner-in-react](https://url-shortner-in-react.herokuapp.com/)
+[On Render](https://sh-url.onrender.com/)
+[Heroku](https://url-shortner-in-react.herokuapp.com/)
+
 
 
 ## module installation
