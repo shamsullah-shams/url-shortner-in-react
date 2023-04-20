@@ -52,6 +52,7 @@ hr {
     padding: 3px 5px;
     border-radius: 5px;
 }
+
 .Important {
     border: 1px solid red;
     color: red;
@@ -121,6 +122,7 @@ hr {
     color: green;
     background-color: white;
 }
+
 .SignInCancel {
     border: 1px solid red;
     color: white;
@@ -131,6 +133,13 @@ hr {
 .SignInCancel:active {
     color: red;
     background-color: white;
+}
+
+@media (max-width : 400px) {
+    .OriginalPopup {
+        left: 0;
+        width: 100%;
+    }
 }
 
 @media (min-width : 450px) {

@@ -4,9 +4,9 @@ import "./Backdrop.css";
 const backdrop = (props) => {
 
 
-    let classNames = ['Backdrop' , 'Close'];
-    if(props.show) {
-        classNames =  ['Backdrop' , 'Open'];
+    let classNames = ['Backdrop', 'Close'];
+    if (props.show) {
+        classNames = ['Backdrop', 'Open'];
     }
 
     return (

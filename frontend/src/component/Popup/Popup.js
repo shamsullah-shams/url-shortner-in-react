@@ -7,7 +7,7 @@ const popup = (props) => {
             <div className="OriginalPopup">
                 <div onClick={props.cancel} className="OriginalPopupCROSS">X</div>
                 <div className="Display">
-                        {props.children}
+                    {props.children}
                 </div>
             </div>
         </div>
